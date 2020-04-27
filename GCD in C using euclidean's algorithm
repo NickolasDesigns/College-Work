@@ -1,0 +1,38 @@
+// Euclidean Algorithm
+#include <stdio.h>
+#include <stdlib.h>
+// C function for extended Euclidean Algorithm
+int gcdExtended(int a, int b, int *x, int *y)
+{
+  // Base Case
+  if (a == 0)
+    {
+      *x = 0;
+      *y = 1;
+      return b;
+    }
+
+  int x1, y1; // To store results of recursive call
+  int gcd = gcdExtended(b%a, a, &x1, &y1);
+
+  // Update x and y using results of recursive call
+  *x = y1 - (b/a) * x1;
+  *y = x1;
+
+  return gcd;
+}
+
+int main(int argc, char *argv[])
+{
+  // Checking if number of argument is equal to 3 or not.
+  if (argc != 3)
+    {
+      printf("enter 3 arguments only eg.\"filename arg1 arg2!!\"\n");
+      return 0;
+    }
+  int x, y;
+  int a = atoi(argv[1]), b = atoi(argv[2]);
+  int g = gcdExtended(a, b, &x, &y);
+  printf("gcd(%d, %d) = %d\n %d*%d + %d*%d = %d\n", a, b, g, a, x, b, y, g);
+  return 0;
+}
