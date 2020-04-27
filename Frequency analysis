@@ -1,0 +1,35 @@
+#include <stdio.h>
+#include <ctype.h>
+
+int main(){
+  char c;
+  int frequency[26]; //26 letters in alphabet
+  int askii;
+  int graphcnt = 0;
+  //initialize array
+  for (askii =0; askii<26; askii++){
+    frequency[askii] = 0;
+  }
+
+  while((c=getchar()) != EOF){
+    if(isalpha(c)){ //if the char is in the alphabet, return true.
+      graphcnt = graphcnt+1;
+      c = toupper(c);  //for hwk1 we only want uppecase
+      frequency[c-'A']++;   //c-'A' is 0 through 26
+    }
+  }
+  for (askii=0; askii<26; askii++){
+    printf("%c %d \n", askii + 'A', frequency[askii]);
+  }
+
+  if(graphcnt >=500){
+    int numpound;
+    for (askii=0; askii<26; askii++){
+        numpound = frequency[askii]/5;
+        printf("%c", askii + 'A');
+        for(int i = 0; i<numpound; i++){
+            printf("%s", "#");}
+        printf("\n");
+          }
+       }
+}
