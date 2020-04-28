@@ -215,7 +215,6 @@ def aStarSearch(problem, heuristic):
                 s.push(start, costs+heuristic(state, problem))
                 break
 
-
 # Abbreviations
 bfs = breadthFirstSearch
 dfs = depthFirstSearch
