@@ -12,9 +12,9 @@ int main(){
   }
 
   while((c=getchar()) != EOF){
-    if(isalpha(c)){ //if the char is in the alphabet, return true.
+    if(isalpha(c)){ //if the char is in the alphabet, return true and continue.
       graphcnt = graphcnt+1;
-      c = toupper(c);  //for hwk1 we only want uppecase
+      c = toupper(c);  //Only uppecase
       frequency[c-'A']++;   //c-'A' is 0 through 26
     }
   }
@@ -25,7 +25,7 @@ int main(){
   if(graphcnt >=500){
     int numpound;
     for (askii=0; askii<26; askii++){
-        numpound = frequency[askii]/5;
+        numpound = frequency[askii]/5; //create a pound for every 5 occurances of the letter 
         printf("%c", askii + 'A');
         for(int i = 0; i<numpound; i++){
             printf("%s", "#");}
