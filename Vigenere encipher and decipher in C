@@ -1,0 +1,49 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+void encrypt(char text[], char key[]){
+  printf("encrypt: %s, key: %s\n",text,key);
+  char ciphertxt[strlen(text)];
+  for(int i =0; i<strlen(text); i++){
+    //converting 0-25
+    char x = ((text[i]-'a') + (key[i%strlen(key)]-'a'))%26;
+    x+= 'a';
+    ciphertxt[i] = x;
+  }
+  printf("encrypted text: %s\n",ciphertxt);
+}
+
+void decrypt(char ciphertext[], char key[]){
+  printf("decrypt: %s\n",ciphertext);
+
+  char decryptedtxt[strlen(ciphertext)];
+  for(int i =0; i<strlen(ciphertext); i++){
+    //converting 0-25
+    char x = (ciphertext[i] - key[i%strlen(key)] + 26)%26;
+    x+= 'a';
+    decryptedtxt[i] = x;
+  }
+  printf("decrypted text: %s\n",decryptedtxt);
+}
+
+int main(int argc, char* argv[]){
+  //Take args from command line. argv[1] = 'e' or 'd', argc[2] = message
+  //   ./program  'e'or'd'  key  messagewithnospaces
+  // assuming entire message is lowercase.
+  char text[strlen(argv[3])];
+  char key[strlen(argv[2])];
+  for(int j=0; j<strlen(argv[2]);j++){
+      key[j] = argv[2][j];
+    }
+  for(int i =0; i <strlen(argv[3]); i++){
+    text[i] = argv[3][i];
+  }
+  if (*argv[1] == 'e')
+    encrypt(text, key);
+
+  else if (*argv[1] == 'd')
+    decrypt(text, key);
+
+  return 0;
+}
